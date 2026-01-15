@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Melina 💚</title>  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #bff0da;
+      font-family: 'Comic Sans MS', 'Trebuchet MS', sans-serif;
+      overflow: hidden;
+    }
+
+    .screen {
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: #2f6f5f;
+      animation: popIn 2s ease forwards;
+    }
+
+    .bubble {
+      display: inline-block;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.6); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 1rem 2.5rem;
+      font-size: 1.3rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #7ad6b3, #f6b6d2);
+      color: #234c44;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .confetti, .balloon {
+      position: fixed;
+      animation: fall linear forwards;
+      pointer-events: none;
+    }
+
+    .confetti {
+      width: 10px;
+      height: 10px;
+    }
+
+    .balloon {
+      font-size: 2rem;
+      animation: floatUp 8s linear forwards;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    @keyframes floatUp {
+      to { transform: translateY(-120vh); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Hidden game screen */
+    .hidden { display: none; }
+
+    .game {
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .maomao {
+      width: 220px;
+      margin-bottom: 1rem;
+      animation: bounce 2.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+  </style></head>
+<body><div id="intro" class="screen">
+  <h1>
+    <span class="bubble">H</span><span class="bubble">a</span><span class="bubble">p</span><span class="bubble">p</span><span class="bubble">y</span>
+    <br>
+    <span class="bubble">B</span><span class="bubble">i</span><span class="bubble">r</span><span class="bubble">t</span><span class="bubble">h</span><span class="bubble">d</span><span class="bubble">a</span><span class="bubble">y</span>
+    <br>
+    <span class="bubble">M</span><span class="bubble">e</span><span class="bubble">l</span><span class="bubble">i</span><span class="bubble">n</span><span class="bubble">a</span> 💚
+  </h1>
+  <button onclick="startGame()">Play 🎉</button>
+</div><div id="game" class="game hidden">
+  <img src="https://i.imgur.com/0y8Ftya.png" alt="Maomao" class="maomao">
+  <h2>Maomao and I wish you the best birthday 💚</h2>
+  <p>Happy 11th birthday Mel!<br>Thank you for being there for me 🌸</p>
+  <button onclick="confettiBurst()">Tap Maomao Magic ✨</button>
+</div><script>
+  function randomColor() {
+    return ['#7ad6b3', '#f6b6d2', '#fff1a8', '#8fcfb3'][Math.floor(Math.random() * 4)];
+  }
+
+  function spawnConfetti() {
+    for (let i = 0; i < 40; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.top = '-10px';
+      c.style.background = randomColor();
+      c.style.animationDuration = (2 + Math.random() * 2) + 's';
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 4000);
+    }
+  }
+
+  function spawnBalloons() {
+    for (let i = 0; i < 6; i++) {
+      const b = document.createElement('div');
+      b.className = 'balloon';
+      b.innerText = '🎈';
+      b.style.left = Math.random() * 100 + 'vw';
+      b.style.bottom = '-40px';
+      document.body.appendChild(b);
+      setTimeout(() => b.remove(), 9000);
+    }
+  }
+
+  function startGame() {
+    document.getElementById('intro').classList.add('hidden');
+    document.getElementById('game').classList.remove('hidden');
+    spawnConfetti();
+    spawnBalloons();
+  }
+
+  function confettiBurst() {
+    spawnConfetti();
+  }
+
+  // intro effects
+  spawnConfetti();
+  spawnBalloons();
+</script></body>
+</html>
